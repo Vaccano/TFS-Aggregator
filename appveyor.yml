@@ -17,8 +17,9 @@ build:
   project: TFSAggregator.sln
   verbosity: minimal
 after_build:
-  - 7z a "%APPVEYOR_PROJECT_NAME%-%APPVEYOR_BUILD_VERSION%_(%APPVEYOR_REPO_BRANCH%).zip" .\bin\%CONFIGURATION%\* -r -x!bin\%CONFIGURATION%\Microsoft.* -x!bin\%CONFIGURATION%\System.* -x!bin\%CONFIGURATION%\Newtonsoft.*
+  - cd bin\%CONFIGURATION%
+  - 7z a "%APPVEYOR_PROJECT_NAME%-%APPVEYOR_BUILD_VERSION%_(%APPVEYOR_REPO_BRANCH%).zip" * -r -x!Microsoft.* -x!System.* -x!Newtonsoft.*
+  - cd ..
 artifacts:
-  - path: '*.zip'
+  - path: bin\$(configuration)\*.zip
   - name: binaries
-  - type: zip
