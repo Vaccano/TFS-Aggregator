@@ -1,3 +1,6 @@
+
+[![Build status](https://ci.appveyor.com/api/projects/status/b86tw6evdmy3dc0d?svg=true)](https://ci.appveyor.com/project/giuliov/tfs-aggregator)
+
 This server side plugin for TFS 2010/2012/2013 enables dynamic calculation of field values in TFS.
 (For example: Dev work + Test Work = Total Work). It supports same work item and parent-child links.
 It also has support for aggregating string values (i.e. Children are Done so the parent is Done).
