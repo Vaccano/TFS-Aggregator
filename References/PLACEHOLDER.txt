@@ -1,0 +1,5 @@
+Copy here the proper version of these TFS assemblies:
+
+Microsoft.TeamFoundation.Framework.ServerMicrosoft.TeamFoundation.WorkItemTracking.Server.Dataaccesslayer
+Microsoft.TeamFoundation.WorkItemTracking.Server
+Microsoft.VisualStudio.Services.WebApi

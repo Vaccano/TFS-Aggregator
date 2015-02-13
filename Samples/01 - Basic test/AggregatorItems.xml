@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AggregatorItems
+    tfsServerUrl="http://localhost:8080/tfs/2013u4Collection"
+    loggingVerbosity="Diagnostic">
+  <AggregatorItem name="BasicTest"
+      operationType="String" linkType="Self" workItemType="Task">
+    <Mappings>
+      <Mapping targetValue="Basic Test worked">
+        <SourceValue></SourceValue>
+      </Mapping>
+    </Mappings>
+    <TargetItem name="Description"/>
+    <SourceItem name="Description"/>
+  </AggregatorItem>
+</AggregatorItems>
