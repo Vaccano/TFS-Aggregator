@@ -22,4 +22,3 @@ after_build:
   - cd ..
 artifacts:
   - path: 'bin\$(configuration)\*.zip'
-  - name: binaries
