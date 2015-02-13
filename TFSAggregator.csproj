@@ -97,24 +97,47 @@
   <ItemGroup>
     <Content Include="LICENSE-2.0.txt" />
     <Content Include="References\PLACEHOLDER.txt" />
-    <Content Include="Samples\01 - Basic test\AggregatorItems.xml" />
-    <Content Include="docs\AggregatorItems-Syntax.md" />
-    <Content Include="docs\Example-Aggregations.md" />
-    <Content Include="docs\Troubleshooting.md" />
-    <Content Include="README.md" />
-    <None Include="Samples\01 - Basic test\Basic test sample.md" />
-    <Content Include="Samples\99 - All operations\AggregatorItems.xml" />
+    <Content Include="Samples\01 - Basic test\AggregatorItems.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\AggregatorItems-Syntax.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\Example-Aggregations.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\Troubleshooting.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="appveyor.yml" />
+    <None Include="Samples\01 - Basic test\Basic test sample.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Samples\99 - All operations\AggregatorItems.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Samples\02 - Simple rollup\AggregatorItems.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Samples\02 - Simple rollup\Simple rollup sample.md" />
-    <Content Include="Samples\02 - Simple rollup\Requirement.xml" />
+    <None Include="Samples\02 - Simple rollup\Simple rollup sample.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Samples\02 - Simple rollup\Requirement.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Samples\02 - Simple rollup\install.ps1" />
+    <Content Include="Samples\02 - Simple rollup\install.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Samples\01 - Basic test\install.ps1" />
+    <Content Include="Samples\01 - Basic test\install.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
