@@ -5,12 +5,13 @@ namespace TFSAggregator
 {
     public class ConfigAggregatorItem
     {
-        
+
         public ConfigAggregatorItem()
         {
             SourceItems = new List<ConfigItemType>();
             Mappings = new List<Mapping>();
             Conditions = new List<Condition>();
+            SiblingTypes = new List<string>();
         }
 
         /// <summary>
@@ -22,6 +23,11 @@ namespace TFSAggregator
         /// The name of the work item type to apply this aggregation to.
         /// </summary>
         public string WorkItemType { get; set; }
+
+        /// <summary>
+        /// The allowed other child work item types if ConfigLinkTypeEnum is Parent. Default value is the WorkItemType. Use "All" for all work item types 
+        /// /// </summary>
+        public List<string> SiblingTypes { get; set; }
 
         /// <summary>
         /// The type of link that we are using
@@ -55,7 +61,7 @@ namespace TFSAggregator
         public List<Mapping> Mappings { get; set; }
 
         /// <summary>
-        /// List of conditions on the target.  
+        /// List of conditions on the target.
         /// For example you can only run the aggregation if date field's value has not past.
         /// </summary>
         public List<Condition> Conditions { get; set; }

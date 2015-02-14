@@ -159,6 +159,11 @@ namespace TFSAggregator
 
                                 // remove the kids that are not the right type that we are working with
                                 ConfigAggregatorItem configAggregatorItemClosure = configAggregatorItem;
+                                // Filter on siblings' type
+                                if (!configAggregatorItemClosure.SiblingTypes.Contains("All"))
+                                {
+                                    iterateFromParents.RemoveAll(x => !configAggregatorItemClosure.SiblingTypes.Contains(x.Type.Name));
+                                }
                                 iterateFromParents.RemoveAll(x => x.Type.Name != configAggregatorItemClosure.WorkItemType);
 
                                 sourceWorkItems = iterateFromParents;
