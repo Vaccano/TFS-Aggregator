@@ -1,8 +1,5 @@
 version: 1.2.{build}
-branches:
-  only:
-  - tfs2013
-configuration: Debug
+configuration: Release
 environment:
   containerURL:
     secure: 5ScgXebma0ZLFaW1DPgEdqis7MzXvPJL+c1O+f+gfkzqwAEzVmhk6ZmISlcgxCL3XOLD5ID2nweLVV5CitmsDsC6PVlxsbfDFgmolBxKHg4=
