@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- works with CMMI... if you edit Feature workitem type -->
+<AggregatorItems
+  tfsServerUrl="http://localhost:8080/tfs/2013u4Collection"
+  loggingVerbosity="Diagnostic">
+  
+  <!--Add the time from the task up to the parent (Bug or PBI)-->
+  <AggregatorItem name="Remaining Work roll-up"
+    operation="Sum" linkType="Parent" linkLevel="1" workItemType="Task">
+    <TargetItem name="Total Work Remaining"/>
+    <SourceItem name="Remaining Work"/>
+  </AggregatorItem>
+
+  <!--Set the effort from the task up to the parent (Bug or PBI)-->
+  <AggregatorItem name="Original Estimate freeze"
+    operation="Sum" linkType="Parent" linkLevel="1" workItemType="Task">
+    <Conditions>
+      <Condition leftField="Finish Date" operator="GreaterThan" rightValue="$NOW$"/>
+    </Conditions>
+    <TargetItem name="Original Estimate"/>
+    <SourceItem name="Original Estimate"/>
+  </AggregatorItem>
+  
+</AggregatorItems>
