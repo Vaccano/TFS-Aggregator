@@ -57,16 +57,16 @@ namespace TFSAggregator
 
             // See if the parent work item is already in our workItemList (if so just use that one).
             int targetWorkItemId = (from WorkItemLink workItemLink in childItem.WorkItemLinks
-                                    where workItemLink.LinkTypeEnd.Name == "Parent"
+                                    where workItemLink.LinkTypeEnd.ImmutableName == "System.LinkTypes.Hierarchy-Reverse"
                                     select workItemLink.TargetId).FirstOrDefault();
 
-            
+
             parent = workItemList.Where(workItem => workItem.Id == targetWorkItemId).FirstOrDefault();
 
             if (parent == null)
             {
                 parent = (from WorkItemLink workItemLink in childItem.WorkItemLinks
-                                  where workItemLink.LinkTypeEnd.Name == "Parent"
+                          where workItemLink.LinkTypeEnd.ImmutableName == "System.LinkTypes.Hierarchy-Reverse"
                                   select store.Access.GetWorkItem(workItemLink.TargetId)).FirstOrDefault();
             }
 
@@ -85,7 +85,7 @@ namespace TFSAggregator
             {
                 WorkItem childWorkItem;
                 // Find all the child links
-                if (link.LinkTypeEnd.Name == "Child")
+                if (link.LinkTypeEnd.ImmutableName == "System.LinkTypes.Hierarchy-Forward")
                 {
                     // If this child link is in the list of items then add it to the result set
                     if (workItemList.Select(x=>x.Id).Contains(link.TargetId))
@@ -102,10 +102,10 @@ namespace TFSAggregator
                     decendants.Add(childWorkItem);
                 }
             }
-            
+
             return decendants;
         }
-        
+
 
         public static void TransitionToState(this WorkItem workItem, string state, string commentPrefix)
         {
