@@ -4,8 +4,8 @@ namespace TFSAggregator
 {
     public static class Operations
     {
-    
-    public static double Perform(this OperationEnum operation, double aggregateValue, double sourceValue)
+
+        public static double Perform(this OperationEnum operation, double aggregateValue, double sourceValue)
         {
             if (operation == OperationEnum.Sum)
                 return aggregateValue + sourceValue;
@@ -29,7 +29,7 @@ namespace TFSAggregator
             else
             {
                 return (aggregateValue / sourceValue);
-                
+
             }
 
 
@@ -43,6 +43,7 @@ namespace TFSAggregator
         Sum,
         Subtract,
         Multiply,
-        Divide
+        Divide,
+        Copy
     }
 }

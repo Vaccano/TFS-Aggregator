@@ -65,6 +65,34 @@ namespace TFSAggregator
             string aggregateValue = "";
             bool aggregateFound = false;
 
+            if (configAggregatorItem.Operation == OperationEnum.Copy)
+            {
+                if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("Inside Operation of copy"));
+
+                StringBuilder text = new StringBuilder();
+                bool bFirstItem = true;
+                foreach (WorkItem item in sourceWorkItems)
+                {
+                    if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("Inside source work item:{0}", item.Id));
+
+                    if (!bFirstItem)
+                        text.Append(";");
+                    // Iterate through all of the TFS Fields that we are aggregating.
+                    bool bFirstField = true;
+                    foreach (ConfigItemType sourceField in configAggregatorItem.SourceItems)
+                    {
+                        if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("Inside source fields:{0}", sourceField.Name));
+
+                        text.Append(item.GetField(sourceField.Name, String.Empty) + (bFirstField ? String.Empty : ","));
+                        bFirstField = false;
+                    }
+                    bFirstItem = false;
+                }
+
+                aggregateFound = true;
+                aggregateValue = text.ToString();
+            }
+
             // Iterate through the mappings until (or if) we find one that we match on
             foreach (Mapping mapping in configAggregatorItem.Mappings)
             {
