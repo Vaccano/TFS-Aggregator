@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AggregatorItems
+    tfsServerUrl="http://localhost:8080/tfs/2013u4Collection"
+    loggingVerbosity="Diagnostic">
+  <AggregatorItem name="CopyOpTest"
+      operationType="String" operation="Copy" linkType="Self" workItemType="Task">
+    <TargetItem name="Description"/>
+    <SourceItem name="Title"/>
+  </AggregatorItem>
+</AggregatorItems>

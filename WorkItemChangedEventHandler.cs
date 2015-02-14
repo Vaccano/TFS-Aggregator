@@ -76,7 +76,7 @@ namespace TFSAggregator
                         // Check to make sure that the rule applies to the work item type we have
                         if (eventWorkItem.Type.Name == configAggregatorItem.WorkItemType)
                         {
-                            if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("{0}[Entry {2}] Aggregation '{3}' applies to {1} work items", "    ", workItemTypeName, currentAggregationId, currentAggregationName)); 
+                            if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("{0}[Entry {2}] Aggregation '{3}' applies to {1} work items", "    ", workItemTypeName, currentAggregationId, currentAggregationName));
 
                             // Use the link type to see what the work item we are updating is
                             if (configAggregatorItem.LinkType == ConfigLinkTypeEnum.Self)
