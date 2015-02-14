@@ -13,7 +13,7 @@ namespace TFSAggregator
 {
     public class WorkItemChangedEventHandler : ISubscriber
     {
-        
+
         public WorkItemChangedEventHandler()
         {
             //DON"T ADD ANYTHING HERE UNLESS YOU REALLY KNOW WHAT YOU ARE DOING.
@@ -37,7 +37,7 @@ namespace TFSAggregator
             int currentAggregationId = 0;
             int workItemId = 0;
             string currentAggregationName = string.Empty;
-            
+
             try
             {
                 if (notificationType == NotificationType.Notification && notificationEventArgs is WorkItemChangedEvent)
@@ -47,7 +47,12 @@ namespace TFSAggregator
                     // Connect to the setting file and load the location of the TFS server
                     string tfsUri = TFSAggregatorSettings.TFSUri;
                     // Connect to TFS so we are ready to get and send data.
-                    Store store = new Store(tfsUri);
+                    Store store;
+                    if(TFSAggregatorSettings.TFSUserName != String.Empty)
+                        store = new Store(tfsUri, TFSAggregatorSettings.TFSUserName, TFSAggregatorSettings.TFSPassword, TFSAggregatorSettings.TFSDomain);
+                    else
+                        store = new Store(tfsUri);
+
                     // Get the id of the work item that was just changed by the user.
                     workItemId = ev.CoreFields.IntegerFields[0].NewValue;
                     // Download the work item so we can update it (if needed)
@@ -106,7 +111,7 @@ namespace TFSAggregator
 
                                     // Load the parent from the saved list (if we have it in there) or just load it from the store.
                                     WorkItem nullCheck = iterateToParent.GetParentFromListOrStore(workItemsToSave, store);
-                                    // 
+                                    //
                                     if (nullCheck != null)
                                     {
                                         iterateToParent = nullCheck;
@@ -119,7 +124,7 @@ namespace TFSAggregator
                                 if (!parentLevelFound)
                                 {
                                     if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("{0}{0}{0}Couldn't find a PARENT {2} {4} up from {3} [{1}]. This aggregation will not continue.", "  ", workItemId, configAggregatorItem.LinkLevel, workItemTypeName, configAggregatorItem.LinkLevel > 1 ? "levels" : "level"));
-                                    currentAggregationId++; 
+                                    currentAggregationId++;
                                     continue;
                                 }
 
@@ -132,7 +137,7 @@ namespace TFSAggregator
                                 if (!configAggregatorItem.Conditions.AreAllConditionsMet(targetWorkItem))
                                 {
                                     if (TFSAggregatorSettings.LoggingIsEnabled) MiscHelpers.LogMessage(String.Format("{0}{0}All conditions for parent aggregation are not met", "    "));
-                                    currentAggregationId++; 
+                                    currentAggregationId++;
                                     continue;
                                 }
 
@@ -161,7 +166,7 @@ namespace TFSAggregator
 
                             // Do the actual aggregation now
                             bool changeMade = Aggregator.Aggregate(sourceWorkItems, targetWorkItem, configAggregatorItem);
-                            
+
                             // If we made a change then add this work item to the list of items to save.
                             if (changeMade)
                             {
@@ -181,7 +186,7 @@ namespace TFSAggregator
                     workItemsToSave.ForEach(x =>
                     {
                         bool isValid = x.IsValid();
-                        
+
                         if (TFSAggregatorSettings.LoggingIsEnabled)
                         {
                             MiscHelpers.LogMessage(String.Format("{0}{0}{0}{1} [{2}] {3} valid to save. {4}",
@@ -228,6 +233,6 @@ namespace TFSAggregator
             get { return SubscriberPriority.Normal; }
         }
 
-        
+
     }
 }

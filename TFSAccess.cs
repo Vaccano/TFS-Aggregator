@@ -10,15 +10,33 @@ namespace TFSAggregator
     public class Store
     {
         private readonly string _tfsServerUrl;
+        private readonly string _tfsUserDomain;
+        private readonly string _tfsUserName;
+        private readonly string _tfsUserPassword;
+
         public Store(string tfsServerUrl)
         {
             _tfsServerUrl = tfsServerUrl;
+        }
+        public Store(string tfsServerUrl, string tfsUserName, string tfsUserPassword, string tfsUserDomain)
+        {
+            _tfsServerUrl = tfsServerUrl;
+            _tfsUserName = tfsUserName;
+            _tfsUserPassword = tfsUserPassword;
+            _tfsUserDomain = tfsUserDomain;
         }
 
         private TFSAccess _access;
         public TFSAccess Access
         {
-            get { return _access ?? (_access = new TFSAccess(_tfsServerUrl)); }
+            get
+            {
+                if (_access == null && String.IsNullOrEmpty(_tfsUserName))
+                    _access = new TFSAccess(_tfsServerUrl);
+                else if(_access == null)
+                    _access = new TFSAccess(_tfsServerUrl, _tfsUserName, _tfsUserPassword, _tfsUserDomain);
+                return _access;
+            }
         }
     }
 
@@ -28,9 +46,16 @@ namespace TFSAggregator
     public class TFSAccess
     {
         private readonly WorkItemStore _store;
+
         public TFSAccess(string tfsUri)
         {
             TfsTeamProjectCollection tfs = new TfsTeamProjectCollection(new Uri(tfsUri));
+            _store = (WorkItemStore)tfs.GetService(typeof(WorkItemStore));
+        }
+        public TFSAccess(string tfsUri, string sUserName, string sPassword, string sDomain)
+        {
+            System.Net.NetworkCredential cre = new System.Net.NetworkCredential(sUserName, sPassword, sDomain);
+            TfsTeamProjectCollection tfs = new TfsTeamProjectCollection(new Uri(tfsUri), cre);
             _store = (WorkItemStore)tfs.GetService(typeof(WorkItemStore));
         }
 
