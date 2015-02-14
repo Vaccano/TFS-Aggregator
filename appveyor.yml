@@ -12,7 +12,7 @@ install:
   - ps: foreach ($file in $files) { Invoke-RestMethod -Uri "$env:containerURL/$file" -OutFile "$env:referenceFolder\$file" }
 build:
   project: TFSAggregator.sln
-  verbosity: minimal
+  verbosity: normal
 after_build:
   - cd bin\%CONFIGURATION%
   - 7z a "%APPVEYOR_PROJECT_NAME%-%APPVEYOR_BUILD_VERSION%_(%APPVEYOR_REPO_BRANCH%).zip" * -r -x!Microsoft.* -x!System.* -x!Newtonsoft.*
