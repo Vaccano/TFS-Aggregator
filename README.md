@@ -30,6 +30,10 @@ Installation
 
  1. Copy TFSAggregator.dll and AggregatorItems.xml to the plugin location on the Application Tier of your TFS Server
      - The plugin folder is usually at this path: `C:\Program Files\Microsoft Team Foundation Server 12.0\Application Tier\Web Services\bin\Plugins`
+ 2. Create a Source named `TFSAggregator` in Windows `Application` Event Log. Using Powershell is a single command
+```
+       New-EventLog -LogName "Application" -Source "TFSAggregator"
+```
 
 
 That is all. TFS will detect that a file was copied in and will load it in.
