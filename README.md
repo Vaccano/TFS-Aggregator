@@ -1,4 +1,9 @@
 
+# Important information
+> You may find a totally revamped version with full-fledged scripting, supporting TFS 2013, TFS 2015 and later, at <https://github.com/tfsaggregator/tfsaggregator>.
+> This site is kept for historical reasons, but all team's work has moved to the new project.
+
+
 [![Build status](https://ci.appveyor.com/api/projects/status/8xecaabbs9r4prmt)](https://ci.appveyor.com/project/giuliov/tfs-aggregator)
 
 This server side plugin for TFS 2010/2012/2013 enables dynamic calculation of field values in TFS.
