@@ -1,6 +1,6 @@
 
 # Important information
-> You may find a totally revamped version with full-fledged scripting, supporting TFS 2013, TFS 2015 and later, at <https://github.com/tfsaggregator/tfsaggregator>.
+> You may find a totally revamped version with full-fledged scripting, supporting TFS 2013, 2015, 2017 and VSTS, at <https://tfsaggregator.github.io/>.
 > This site is kept for historical reasons, but all team's work has moved to the new project.
 
 
